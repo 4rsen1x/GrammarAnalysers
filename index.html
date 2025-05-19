@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Парсер выражений</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="rutishauser">Алгоритм Рутисхаузера</button>
+      <button class="tab-btn" data-tab="leftright">Нисходящий разбор</button>
+      <button class="tab-btn" data-tab="bottomup">Восходящий разбор</button>
+      <!-- Polish notation tab button removed -->
+    </div>
+
+    <div id="rutishauser-tab" class="tab-content active">
+      <h2>Парсер выражений (метод Рутисхаузера)</h2>
+      <form id="expression-form">
+        <input type="text" id="expression-input" placeholder="Введите выражение" autocomplete="off" required />
+        <button type="submit">Разобрать</button>
+      </form>
+      <div id="table-container"></div>
+    </div>
+
+    <div id="leftright-tab" class="tab-content">
+      <h2>Левосторонний нисходящий разбор</h2>
+      <div class="grammar-section">
+        <h3>Грамматика (БНФ)</h3>
+        <textarea id="grammar-input" placeholder="Введите грамматику в форме Бэкуса-Наура, например:
+<Целое> := <Знак><ЦБЗ> | <ЦБЗ>
+<ЦБЗ> := <Цифра><ЦБЗ> | <Цифра>
+<Цифра> := 0|1|2|3|4|5|6|7|8|9
+<Знак> := +|-" rows="6"></textarea>
+      </div>
+      <form id="leftright-form">
+        <input type="text" id="string-input" placeholder="Введите строку для разбора" autocomplete="off" required />
+        <button type="submit">Разобрать</button>
+      </form>
+      <div id="leftright-result"></div>
+    </div>
+
+    <div id="bottomup-tab" class="tab-content">
+      <h2>Левосторонний восходящий разбор</h2>
+      <div class="grammar-section">
+        <h3>Грамматика (БНФ)</h3>
+        <textarea id="bottomup-grammar" placeholder="Введите грамматику в форме Бэкуса-Наура, например:
+<S> := <A><B>
+<A> := a<A> | a
+<B> := b<B> | b" rows="6"></textarea>
+      </div>
+      <form id="bottomup-form">
+        <input type="text" id="bottomup-input" placeholder="Введите строку для разбора" autocomplete="off" required />
+        <button type="submit">Разобрать</button>
+      </form>
+      <div id="bottomup-result"></div>
+    </div>
+    
+    <!-- LL(k) Parser Tab -->
+    <div id="llk-tab" class="tab-content">
+      <h2>LL(k) разбор</h2>
+      <div class="grammar-section">
+        <h3>Грамматика (БНФ)</h3>
+        <textarea id="llk-grammar" placeholder="Введите грамматику в форме Бэкуса-Наура, например:
+<S> := a<A> | b<B>
+<A> := a<A> | e
+<B> := b<B> | e" rows="6"></textarea>
+      </div>
+      <div class="form-row">
+        <label for="k-value">Значение k:</label>
+        <input type="number" id="k-value" min="1" max="5" value="1" />
+      </div>
+      <form id="llk-form">
+        <input type="text" id="llk-input" placeholder="Введите строку для разбора" autocomplete="off" required />
+        <button type="submit">Разобрать</button>
+      </form>
+      <div id="llk-result" class="result-container"></div>
+    </div>
+    
+    <!-- Polish Notation Tab -->
+    <div id="polish-tab" class="tab-content">
+      <h2>Разбор выражений и построение польской записи</h2>
+      <p>Алгоритм Бауэра-Замельзона для построения обратной польской записи</p>
+      <form id="polish-form">
+        <input type="text" id="polish-input" placeholder="Введите выражение, например: a+b*c или (2+3)*4" autocomplete="off" required />
+        <button type="submit">Разобрать</button>
+      </form>
+      <div id="polish-result" class="result-container"></div>
+    </div>
+  </div>
+  
+  <!-- Load the algorithm modules first -->
+  <script src="rutishauser.js"></script>
+  <script src="leftright.js"></script>
+  <script src="bottomup.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
